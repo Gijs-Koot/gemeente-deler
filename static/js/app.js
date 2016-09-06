@@ -38,9 +38,9 @@ app.config(function($routeProvider) {
 app.controller("GeoJSONController", ['$scope', '$http', function($scope, $http) {
     angular.extend($scope, {
         japan: {
-            lat: 37.26,
-            lng: 138.86,
-            zoom: 4
+            lat: 52,
+            lng: 4,
+            zoom: 7
         },
         defaults: {
             scrollWheelZoom: false
@@ -48,7 +48,7 @@ app.controller("GeoJSONController", ['$scope', '$http', function($scope, $http) 
     });
 
     // Get the countries geojson data from a JSON
-    $http.get("data/JPN.geo.json").success(function(data, status) {
+    $http.get("data/townships.geojson").success(function(data, status) {
         angular.extend($scope, {
             geojson: {
                 data: data,
