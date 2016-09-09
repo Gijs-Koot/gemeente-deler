@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 import feather
 import json
 from sklearn.neighbors import NearestNeighbors
-
+import numpy as np
 
 
 app = Flask(__name__, static_url_path='')
@@ -45,8 +45,12 @@ def similar():
     idx = sim.T.columns
     cols = sim.columns
 
-    header = [""] + sim.T.loc["regio", idx].values.tolist()
-    rows = sim.T.loc[list(set(cols) - {"regio"}), idx].rename(rename).reset_index().values.tolist()
+    header = [""] + sim.T.loc["regio", idx].values.tolist() + ["average"]
+    rows = sim.T.loc[list(set(cols) - {"regio"}), idx]
+
+    rows["average"] = rows.apply(np.mean, axis=1)
+
+    rows = rows.rename(rename).reset_index().values.tolist()
 
     return jsonify({
         "header": header,
