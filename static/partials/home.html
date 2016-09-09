@@ -1,23 +1,39 @@
 
-<h1>Home</h1>
+
+<h1>Super awesome name</h1>
 
 
 <!-- Search form -->
 <form>
-  <input type="text" name="search" ng-model="search_term" placeholder="Zoek...">
+  <input type="text" name="search" ng-model="search_term" list="selected_gemeente" placeholder="eg. Amsterdam">
 </form>
 
-<select ng-model='selected_gemeente'>
-  <option ng-repeat="r in results | filter:search_term" value="{{r.id}}">
+
+<select class="dropdown" ng-model='selected_gemeente'>
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{search_term}}
+    <span class="caret"></span>
+  </button>
+  <option class="dropdown" ng-repeat="r in results | filter:search_term" value="{{r.id}}">
     {{r.name}}
   </option>
 </select>
 
-<form action="">
-  <input type="checkbox" name="search_options" value="a">Option1 <br>
-  <input type="checkbox" name="search_options" value="b">Option2 <br>
-  <input type="checkbox" name="search_options" value="c">Option3 <br>
+
+
+<select class="dropdown btn btn-primary dropdown-toggle" type="button" list="gem_options" data-toggle="dropdown" ng-model='selected_gemeente'>Stad <span class="caret"></span>
+  <datalist id="gem_options">
+    <option class="dropdown" ng-repeat="r in results | filter:search_term" value="{{r.id}}">
+      {{r.name}}
+    </option>
+  </datalist>
+</select>
+
+
+<!-- Checkboxes -->
+<form ng-repeat="....">>
+  <input type="checkbox" checklist-model="selected_gemeente" checklist-value="key">{{key}} <br>
 </form>
+
 
 <!-- SEARCH button -->
 <button class="btn btn-primary" ng-click="search_similar()">
@@ -27,6 +43,7 @@
 
 <hr />
 
+<!-- Results table -->
 <table class="table table-striped">
   <thead>
    <th ng-repeat="(key, value) in indices">
@@ -43,14 +60,15 @@
 </table>
 
 
-<!-- TODO:
-- make columns vertical
-- add colors
-- add average value column
-- remove id column
-- add labels
-- bootstap select box
-- checkboxes
+  <!-- TODO:
+  - make columns vertical
+  - add colors
+  - add average value column
+  - remove id column
+  - add labels
+  - bootstap select box
+  - checkboxes
 
 
 -->
+
