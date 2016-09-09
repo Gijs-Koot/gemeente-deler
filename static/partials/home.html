@@ -7,8 +7,30 @@
   <input type="text" name="search" ng-model="search_term" placeholder="Zoek...">
 </form>
 
-<select>
-  <option ng-repeat="r in results | filter:search_term">
+<select ng-model='selected_gemeente'>
+  <option ng-repeat="r in results | filter:search_term" value="{{r.id}}">
     {{r.name}}
   </option>
 </select>
+
+
+<button class="btn btn-primary" ng-click="search_similar()">
+  Zoek
+</button>
+
+<hr />
+
+<table class="table table-striped">
+  <thead>
+     <th ng-repeat="(key, value) in similar[0]">
+      {{key}}
+     </th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="r in similar">
+      <td ng-repeat="(key, value) in r">
+        {{value}}
+      </td>
+    </pre>
+  </tr>
+</table>
