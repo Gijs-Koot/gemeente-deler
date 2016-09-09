@@ -31,13 +31,27 @@ def similar():
     gemeente_id = int(params["gemeente_id"])
     cats = params["categories"]
 
-    sim = similar_gemeentes(gemeente_id, cats).T
+    sim = similar_gemeentes(gemeente_id, cats)
 
-    results = [{
-        key: value for key, value in zip(["id"] + list(sim.columns), row.tolist())
-    } for row in sim.to_records()]
+    idx = sim.T.columns
+    cols = sim.columns
 
-    return jsonify(results)
+    rename = {
+        key: value["name"] for key, value in column_data.items()
+    }
+
+    print(sim.head())
+
+    idx = sim.T.columns
+    cols = sim.columns
+
+    header = [""] + sim.T.loc["regio", idx].values.tolist()
+    rows = sim.T.loc[list(set(cols) - {"regio"}), idx].rename(rename).reset_index().values.tolist()
+
+    return jsonify({
+        "header": header,
+        "rows": rows
+    })
 
 @app.route('/datasets')
 def datasets():
