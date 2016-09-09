@@ -81,7 +81,9 @@ def similar():
 
         norm = matplotlib.colors.Normalize(vmin=-1 * max, vmax=max)
         cmap = cm.ScalarMappable(norm=norm, cmap=matplotlib.cm.jet)
-        return rgb2hex(cmap.to_rgba(value))
+        values = list(cmap.to_rgba(value))
+        values[-1] = .001
+        return rgb2hex(values)
 
     for row in rows_formatted:
 
