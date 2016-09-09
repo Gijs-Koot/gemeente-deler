@@ -31,7 +31,7 @@ def similar():
     gemeente_id = int(params["gemeente_id"])
     cats = params["categories"]
 
-    sim = similar_gemeentes(gemeente_id, cats)
+    sim = similar_gemeentes(gemeente_id, cats).T
 
     results = [{
         key: value for key, value in zip(["id"] + list(sim.columns), row.tolist())

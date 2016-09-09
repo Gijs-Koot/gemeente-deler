@@ -13,24 +13,44 @@
   </option>
 </select>
 
+<form action="">
+  <input type="checkbox" name="search_options" value="a">Option1 <br>
+  <input type="checkbox" name="search_options" value="b">Option2 <br>
+  <input type="checkbox" name="search_options" value="c">Option3 <br>
+</form>
 
+<!-- SEARCH button -->
 <button class="btn btn-primary" ng-click="search_similar()">
   Zoek
 </button>
+
 
 <hr />
 
 <table class="table table-striped">
   <thead>
-     <th ng-repeat="(key, value) in similar[0]">
-      {{key}}
-     </th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="r in similar">
-      <td ng-repeat="(key, value) in r">
-        {{value}}
-      </td>
-    </pre>
-  </tr>
+   <th ng-repeat="(key, value) in indices">
+    {{value}}
+  </th>
+</thead>
+<tbody>
+  <tr ng-repeat="r in similar">
+    <td ng-repeat="(key, value) in indices">
+      {{r[key]}}
+    </td>
+  </pre>
+</tr>
 </table>
+
+
+<!-- TODO:
+- make columns vertical
+- add colors
+- add average value column
+- remove id column
+- add labels
+- bootstap select box
+- checkboxes
+
+
+-->

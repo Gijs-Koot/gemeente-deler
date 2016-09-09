@@ -62,3 +62,9 @@ app.controller("GeoJSONController", ['$scope', '$http', function($scope, $http) 
         });
     });
 }]);
+
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
