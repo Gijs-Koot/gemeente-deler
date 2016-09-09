@@ -12,15 +12,13 @@ app.controller("HomeController", ['$scope', '$http', function($scope, $http) {
 
         $http.post('/similar', {
             "gemeente_id": $scope.selected_gemeente,
-            "categories": ["count_2015", "count_2014"]
+            "categories": ["aantal_verdachten"]
         }).then(function(response){
 
-          $scope.similar = response.data;
+          $scope.header = response.data.header;
 
-          var data = response.data;
-          $scope.indices = data[0];
+          $scope.rows = response.data.rows;
 
-          console.log(indices);
 
         });
 

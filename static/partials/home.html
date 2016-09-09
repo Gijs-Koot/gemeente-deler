@@ -29,14 +29,14 @@
 
 <table class="table table-striped">
   <thead>
-   <th ng-repeat="(key, value) in indices">
-    {{value}}
+   <th ng-repeat="head in header">
+    {{head}}
   </th>
 </thead>
 <tbody>
-  <tr ng-repeat="r in similar">
-    <td ng-repeat="(key, value) in indices">
-      {{r[key]}}
+  <tr ng-repeat="r in rows">
+    <td ng-repeat="value in r">
+      {{value}}
     </td>
   </pre>
 </tr>
