@@ -70,8 +70,9 @@ def similar():
     idx = sim.T.columns
     cols = sim.columns
 
-    header = [""] + sim.T.loc["regio", idx].values.tolist()
+    header = [""] + sim.T.loc["regio", idx].values.tolist() + ["Gemiddeld"]
     rows = sim.T.loc[list(set(cols) - {"regio"}), idx].rename(rename)
+    rows["average"] = rows.apply(np.mean, axis=1)
 
     rows_formatted = rows.reset_index().values.tolist()
 
