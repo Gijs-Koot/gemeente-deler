@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
-import feather
 import json
 from sklearn.neighbors import NearestNeighbors
-
+import numpy as np
+import pandas as pd
 
 
 app = Flask(__name__, static_url_path='')
-df = feather.read_dataframe('./datasets/clean/clean_data.feather').dropna()
+df = pd.read_csv("./datasets/clean/clean_data.csv", index_col=0)
 
 nn = NearestNeighbors()
 
@@ -31,13 +31,31 @@ def similar():
     gemeente_id = int(params["gemeente_id"])
     cats = params["categories"]
 
-    sim = similar_gemeentes(gemeente_id, cats).T
+    sim = similar_gemeentes(gemeente_id, cats)
 
-    results = [{
-        key: value for key, value in zip(["id"] + list(sim.columns), row.tolist())
-    } for row in sim.to_records()]
+    idx = sim.T.columns
+    cols = sim.columns
 
-    return jsonify(results)
+    rename = {
+        key: value["name"] for key, value in column_data.items()
+    }
+
+    print(sim.head())
+
+    idx = sim.T.columns
+    cols = sim.columns
+
+    header = [""] + sim.T.loc["regio", idx].values.tolist() + ["average"]
+    rows = sim.T.loc[list(set(cols) - {"regio"}), idx]
+
+    rows["average"] = rows.apply(np.mean, axis=1)
+
+    rows = rows.rename(rename).reset_index().values.tolist()
+
+    return jsonify({
+        "header": header,
+        "rows": rows
+    })
 
 @app.route('/datasets')
 def datasets():
