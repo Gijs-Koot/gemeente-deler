@@ -29,9 +29,7 @@ app.config(function($routeProvider) {
             controller: "GeoJSONController"
         }).otherwise({
                 templateUrl : 'partials/home.html',
-                controller  : function($scope){
-
-                }
+                controller  : 'HomeController'
         })
 });
 

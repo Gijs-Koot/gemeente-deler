@@ -4,5 +4,11 @@
 
 <!-- Search form -->
 <form>
-  <input type="text" name="search" placeholder="Zoek...">
+  <input type="text" name="search" ng-model="search_term" placeholder="Zoek...">
 </form>
+
+<select>
+  <option ng-repeat="r in results | filter:search_term">
+    {{r.name}}
+  </option>
+</select>
