@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
-import feather
 import json
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
+import pandas as pd
 
 
 app = Flask(__name__, static_url_path='')
-df = feather.read_dataframe('./datasets/clean/clean_data.feather').dropna()
+df = pd.read_csv("./datasets/clean/clean_data.csv", index_col=0)
 
 nn = NearestNeighbors()
 
