@@ -61,8 +61,15 @@ h2 {
 
 .table > tbody {
   font-size: 1.3em;
-  color: white;
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.table > tbody :first-child {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+.table > tbody :last-child {
+  background-color: rgba(0, 255, 0, 0.2);
 }
 
 
