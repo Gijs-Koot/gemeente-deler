@@ -1,37 +1,46 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+import feather
+import json
 
 app = Flask(__name__, static_url_path='')
 
-@app.route('/similar')
+df = feather.read_dataframe('./datasets/clean/clean_data.feather')
+with open('./datasets/clean/columns.json') as f:
+    column_data = json.load(f)
+
+@app.route('/similar', methods=["POST"])
 def similar():
+
+    params = request.json
+    print(params)
+
+    gemeente_id = params["gemeente_id"]
+    cats = params["categories"]
+
     return jsonify({
-        "results": ["G04", "G10"]
+        "results": ["G04", "G10"],
+        "request": params
     })
 
 @app.route('/datasets')
 def datasets():
-    return jsonify({
-        "results": [{
-            "name": "Criminaliteitindex",
-            "year": 2016,
-            "id": "crim_index_2016"
-        }, {
-            "name": "Bevolking",
-            "id": "count_2016",
-            "year": 2016
-        }]
-    })
+
+    cols = [{
+        "id": col
+    } for col in df.columns if col in column_data]
+
+    for c in cols:
+        c.update(column_data[c["id"]])
+
+    return jsonify(cols)
 
 @app.route('/gemeentes')
 def gemeentes():
     return jsonify({
         "results": [{
-            "id": "G04",
-            "name": "Arnhem"
-        }, {
-            "id": "G10",
-            "name": "Nijmegen"
-        }]
+    "name": name,
+    "id": int(index)
+} for index, name in df[["regio"]].to_records()]
     })
 
 @app.route('/gemeente')
