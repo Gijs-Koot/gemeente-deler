@@ -5,18 +5,26 @@ import numpy as np
 import pandas as pd
 import matplotlib
 from matplotlib import cm
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
 
 app = Flask(__name__, static_url_path='')
 df = pd.read_csv("./datasets/clean/clean_data.csv", index_col=0)
 
+normalizer = StandardScaler()
 nn = NearestNeighbors()
 
 def similar_gemeentes(gemeente_id, columns, n=5):
 
     values = df[columns].values
 
+    values = normalizer.fit_transform(values)
     nn.fit(values)
-    near = nn.kneighbors(df.loc[gemeente_id][columns].values.reshape(1, -1), n_neighbors=n)[1][0]
+
+    value = df.loc[gemeente_id][columns].values.reshape(1, -1)
+    value = normalizer.transform(value)
+
+    near = nn.kneighbors(value, n_neighbors=n)[1][0]
 
     return df.ix[df.index[near]]
 
