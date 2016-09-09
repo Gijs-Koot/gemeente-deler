@@ -11,14 +11,14 @@
 <hr />
 
 <div class="btn-group">
-  <label ng-repeat="dataset in datasets" class="btn btn-primary" ng-model="dataset.active" uib-btn-checkbox>{{dataset.name}}</label>
+  <label ng-repeat="dataset in datasets" class="btn btn-lg btn-primary" ng-model="dataset.active" uib-btn-checkbox>{{dataset.name}}</label>
 </div>
 
 <hr />
 
-<select class="dropdown btn btn-primary dropdown-toggle" type="button" list="gem_options" data-toggle="dropdown" ng-model='selected_gemeente'>Stad <span class="caret"></span>
+<select class="dropdown btn btn-lg btn-primary"  dropdown-toggle" type="button" list="gem_options" data-toggle="dropdown" ng-model='selected_gemeente'>Stad <span class="caret"></span>
   <datalist id="gem_options">
-    <option class="dropdown" ng-repeat="r in results | filter:search_term" value="{{r.id}}">
+    <option ng-repeat="r in results | filter:search_term" value="{{r.id}}">
       {{r.name}}
     </option>
   </datalist>
@@ -32,7 +32,7 @@
 
 
 <!-- SEARCH button -->
-<button class="btn btn-primary" ng-click="search_similar()">
+<button class="btn btn-lg btn-default" ng-click="search_similar()">
   Zoek
 </button>
 
