@@ -96,7 +96,7 @@ def similar():
         for index in range(len(row)):
             value = row[index]
 
-            if type(value) == str:
+            if type(value) != float:
                 row[index] = {
                     "value": value,
                     "color": None
