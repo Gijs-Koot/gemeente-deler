@@ -8,17 +8,13 @@
   <input type="text" name="search" ng-model="search_term" list="selected_gemeente" placeholder="eg. Amsterdam">
 </form>
 
+<hr />
 
-<select class="dropdown" ng-model='selected_gemeente'>
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{search_term}}
-    <span class="caret"></span>
-  </button>
-  <option class="dropdown" ng-repeat="r in results | filter:search_term" value="{{r.id}}">
-    {{r.name}}
-  </option>
-</select>
+<div class="btn-group">
+  <label ng-repeat="dataset in datasets" class="btn btn-primary" ng-model="dataset.active" uib-btn-checkbox>{{dataset.name}}</label>
+</div>
 
-
+<hr />
 
 <select class="dropdown btn btn-primary dropdown-toggle" type="button" list="gem_options" data-toggle="dropdown" ng-model='selected_gemeente'>Stad <span class="caret"></span>
   <datalist id="gem_options">
