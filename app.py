@@ -11,7 +11,7 @@ df = pd.read_csv("./datasets/clean/clean_data.csv", index_col=0)
 with open('./datasets/clean/columns.json') as f:
     column_data = json.load(f)
 
-@app.route('/similar', methods=["POST"])
+@app.route('/api/similar', methods=["POST"])
 def similar():
 
     params = request.json
@@ -26,7 +26,7 @@ def similar():
         "results": json.loads(sim.to_json())
     })
 
-@app.route('/datasets')
+@app.route('/api/datasets')
 def datasets():
 
     cols = [{
@@ -38,7 +38,7 @@ def datasets():
 
     return jsonify(cols)
 
-@app.route('/gemeentes')
+@app.route('/api/gemeentes')
 def gemeentes():
     return jsonify({
         "results": [{
@@ -47,7 +47,7 @@ def gemeentes():
 } for index, name in df[["regio"]].to_records()]
     })
 
-@app.route('/gemeente')
+@app.route('/api/gemeente')
 def gemeente():
     return jsonify({
         "result": {

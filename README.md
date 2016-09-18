@@ -6,7 +6,7 @@
 
 Return available datasets with metadata. Metadata is just the name right now, but may contain formatting hints etcetera later.
 
-    GET /datasets
+    GET /api/datasets
 
 Response
 
@@ -22,11 +22,11 @@ Response
 
       ...
 
-#### `/gemeentes`
+#### `/api/gemeentes`
 
 Returns all available gemeentes.
 
-    GET /gemeentes
+    GET /api/gemeentes
 
 Response
 
@@ -43,11 +43,11 @@ Response
 
      ...
 
-#### `/similar`
+#### `/api/similar`
 
 Returns similar gemeentes based on a target and given categories.
 
-    POST /similar
+    POST /api/similar
 
     {
     	"gemeente_id": 9,
