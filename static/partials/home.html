@@ -1,70 +1,59 @@
-
-
 <h1>Comparea</h1>
 <h2>Maak een eerlijke vergelijking</h2>
 
 
 <!-- Search form -->
 <form>
-  <input type="text" name="search" ng-model="search_term" list="selected_gemeente" placeholder="eg. Amsterdam">
+    <input type="text" name="search" ng-model="search_term" list="selected_gemeente" placeholder="eg. Amsterdam">
 </form>
 
-<hr />
+<hr/>
 
 <div class="btn-group">
-  <label ng-repeat="dataset in datasets" class="btn btn-lg btn-primary" ng-model="dataset.active" uib-btn-checkbox>{{dataset.name}}</label>
+    <label ng-repeat="dataset in datasets" class="btn btn-lg btn-primary" ng-model="dataset.active" uib-btn-checkbox>{{dataset.name}}</label>
 </div>
 
-<hr />
+<hr/>
 
-<select class="dropdown btn btn-lg btn-primary"  dropdown-toggle type="button" list="gem_options" data-toggle="dropdown" ng-model='selected_gemeente'>Stad <span class="caret"></span>
-  <datalist id="gem_options">
-    <option ng-repeat="r in results | filter:search_term" value="{{r.id}}">
-      {{r.name}}
-    </option>
-  </datalist>
+<select class="dropdown btn btn-lg btn-primary" dropdown-toggle type="button" ng-options="r.id as r.name for r in results | filter:search_term" data-toggle="dropdown"
+        ng-model='selected_gemeente'>Stad <span class="caret"></span>
+
+
 </select>
-
-
-<!-- Checkboxes -->
-<form ng-repeat="....">>
-  <input type="checkbox" checklist-model="selected_gemeente" checklist-value="key">{{key}} <br>
-</form>
-
 
 <!-- SEARCH button -->
 <button class="btn btn-lg btn-default" ng-click="search_similar()">
-  Zoek
+    Zoek
 </button>
 
 
-<hr />
+<hr/>
 
 <!-- Results table -->
 <table class="table table-striped">
-  <thead>
-   <th ng-repeat="head in header">
-    {{head}}
-  </th>
-</thead>
-<tbody>
-  <tr ng-repeat="r in rows">
-    <td ng-repeat="value in r">
-      {{value.value}}
-    </td>
-  </pre>
-</tr>
+    <thead>
+    <th ng-repeat="head in header">
+        {{head}}
+    </th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="r in rows">
+        <td ng-repeat="value in r">
+            {{value.value}}
+        </td>
+        </pre>
+    </tr>
 </table>
 
 
-  <!-- TODO:
-  - make columns vertical
-  - add colors
-  - add average value column
-  - remove id column
-  - add labels
-  - bootstap select box
-  - checkboxes
+<!-- TODO:
+- make columns vertical
+- add colors
+- add average value column
+- remove id column
+- add labels
+- bootstap select box
+- checkboxes
 
 
 -->
