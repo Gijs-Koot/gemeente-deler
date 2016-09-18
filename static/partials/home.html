@@ -17,7 +17,7 @@
 
 <hr />
 
-<select class="dropdown btn btn-lg btn-primary"  dropdown-toggle" type="button" list="gem_options" data-toggle="dropdown" ng-model='selected_gemeente'>Stad <span class="caret"></span>
+<select class="dropdown btn btn-lg btn-primary"  dropdown-toggle type="button" list="gem_options" data-toggle="dropdown" ng-model='selected_gemeente'>Stad <span class="caret"></span>
   <datalist id="gem_options">
     <option ng-repeat="r in results | filter:search_term" value="{{r.id}}">
       {{r.name}}

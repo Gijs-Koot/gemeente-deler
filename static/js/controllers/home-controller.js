@@ -3,6 +3,8 @@ app.controller("HomeController", ['$scope', '$http', function($scope, $http) {
 
     $http.get('api/gemeentes').then(function(response){
       $scope.results = response.data.results;
+        console.log("data", response.data);
+        console.log("results", response.data.results);
     });
 
     $scope.datasets = [];
@@ -20,6 +22,7 @@ app.controller("HomeController", ['$scope', '$http', function($scope, $http) {
         $scope.datasets.map(function(dataset){
             if(dataset.active){
                 categories.push(dataset.id);
+                console.log('categories', categories);
             }
         });
 
