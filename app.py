@@ -3,6 +3,8 @@ import json
 import numpy as np
 import pandas as pd
 
+from gemdel import similar_gemeentes
+
 app = Flask(__name__, static_url_path='')
 df = pd.read_csv("./datasets/clean/clean_data.csv", index_col=0)
 
@@ -18,7 +20,7 @@ def similar():
     gemeente_id = int(params["gemeente_id"])
     cats = params["categories"]
 
-    sim = similar_gemeentes(gemeente_id, cats)
+    sim = similar_gemeentes(df, gemeente_id, cats)
 
     return jsonify({
         "results": json.loads(sim.to_json())
