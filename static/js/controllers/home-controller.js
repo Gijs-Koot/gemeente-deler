@@ -1,13 +1,13 @@
 app.controller("HomeController", ['$scope', '$http', function($scope, $http) {
     console.log("Welcome to home.");
 
-    $http.get('gemeentes').then(function(response){
+    $http.get('api/gemeentes').then(function(response){
       $scope.results = response.data.results;
     });
 
     $scope.datasets = [];
 
-    $http.get('datasets').then(function(response){
+    $http.get('api/datasets').then(function(response){
         $scope.datasets = response.data;
     });
 
@@ -23,7 +23,7 @@ app.controller("HomeController", ['$scope', '$http', function($scope, $http) {
             }
         });
 
-        $http.post('similar', {
+        $http.post('api/similar', {
             "gemeente_id": $scope.selected_gemeente,
             "categories": categories
         }).then(function(response){
