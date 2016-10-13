@@ -30,20 +30,7 @@
 <hr/>
 
 <!-- Results table -->
-<table class="table table-striped">
-    <thead>
-    <th ng-repeat="head in header">
-        {{head}}
-    </th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="r in rows">
-        <td ng-repeat="value in r">
-            {{value.value}}
-        </td>
-        </pre>
-    </tr>
-</table>
+<div ng-if="gridData.data.length" ui-grid="gridData" class="similar"></div>
 
 
 <!-- TODO:

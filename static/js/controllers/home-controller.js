@@ -18,6 +18,11 @@ app.controller("HomeController", ['$scope', '$http', function($scope, $http) {
 
     });
 
+
+    $scope.gridData = {
+      data: []
+    }
+
     $scope.search_similar = function(){
         console.log('Zoeken');
 
@@ -40,11 +45,9 @@ app.controller("HomeController", ['$scope', '$http', function($scope, $http) {
             "categories": categories
         }).then(function(response){
 
-          $scope.similarResults = response.data;
-            console.log('similarResults', $scope.similarResults);
-
-
-
+        $scope.gridData = {
+          data: response.data.results
+        };
 
         });
 

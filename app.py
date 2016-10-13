@@ -20,10 +20,12 @@ def similar():
     gemeente_id = int(params["gemeente_id"])
     cats = params["categories"]
 
-    sim = similar_gemeentes(df, gemeente_id, cats)
+    sim = similar_gemeentes(df, gemeente_id, cats).T
+
+    print(sim)
 
     return jsonify({
-        "results": json.loads(sim.to_json())
+        "results": list(json.loads(sim.to_json()).values())
     })
 
 @app.route('/api/datasets')

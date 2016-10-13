@@ -1,4 +1,4 @@
-var app = angular.module('gd-app', ['ngRoute', 'ui.bootstrap', 'rzModule', 'leaflet-directive']);
+var app = angular.module('gd-app', ['ngRoute', 'ui.bootstrap', 'rzModule', 'leaflet-directive', 'ui.grid']);
 
 app.config(function($routeProvider) {
     $routeProvider.when('/about', {
