@@ -3,9 +3,11 @@
 
 
 <!-- Search form -->
-<form>
-    <input type="text" name="search" ng-model="search_term" list="selected_gemeente" placeholder="eg. Amsterdam">
-</form>
+<select class="dropdown btn btn-lg btn-primary" dropdown-toggle type="button" ng-options="r.id as r.name for r in results | filter:search_term" data-toggle="dropdown"
+        ng-model='selected_gemeente'>Stad <span class="caret"></span>
+
+
+</select>
 
 <hr/>
 
@@ -15,11 +17,6 @@
 
 <hr/>
 
-<select class="dropdown btn btn-lg btn-primary" dropdown-toggle type="button" ng-options="r.id as r.name for r in results | filter:search_term" data-toggle="dropdown"
-        ng-model='selected_gemeente'>Stad <span class="caret"></span>
-
-
-</select>
 
 <!-- SEARCH button -->
 <button class="btn btn-lg btn-default" ng-click="search_similar()">
